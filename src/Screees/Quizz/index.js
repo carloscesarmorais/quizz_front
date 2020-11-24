@@ -278,7 +278,7 @@ export default function Quizz() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => handleClose()}>
-                        Início
+                        Concluir
                     </Button>
                 </Modal.Footer>
             </Modal>
