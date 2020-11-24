@@ -38,7 +38,7 @@ export default function Quizz() {
 
     const handleClose = () => {
         setShow(false)
-        window.location.pathname = '/'
+        window.location.pathname = '/fim'
     }
 
     const handleShow = () => setShow(true)
@@ -292,7 +292,7 @@ export default function Quizz() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => handleClose()}>
-                        Início
+                        Concluir
                     </Button>
                 </Modal.Footer>
             </Modal>

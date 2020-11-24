@@ -1,20 +1,22 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-
 export default function Finish() {
+
 	return (
-		<div
-			style={{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-				flexDirection: 'column'
-			}}
-		>
-			<h1>Obrigado pela pesquisa</h1>
-			<Button>
-				Início
-			</Button>
+
+		<div >
+			<h1 className="col-auto" style={{backgroundColor: 'cornflowerblue', marginTop:40, padding:60, textAlign:'center', fontFamily:'Trebuchet MS'}}>Obrigado por nos ajudar com a pesquisa! 💻 </h1>
+
+			<div className="row-cols-md-4">
+
+				<img src='https://media.giphy.com/media/JPm9P0EDVmJ4ygbjbR/giphy.gif' alt="loading..." style={{
+				width: '70%',
+				height: '60',
+				position: 'absolute',
+				bottom: '0',
+				right:'0',
+				objectFit: "unset"
+			}}/>
 		</div>
-	)
+		</div>
+)
 }
