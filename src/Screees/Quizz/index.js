@@ -67,7 +67,7 @@ export default function Quizz() {
         const schoolingUser = localStorage.getItem('schoolingUser')
 
         await axios.post(
-            'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/salvar/perfil',
+            'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/perfil',
             {
                 "idade": age,
                 "grauEscolaridade": schoolingUser,
