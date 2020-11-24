@@ -48,7 +48,7 @@ export default function Quizz() {
 
         axios.request({
             method: 'GET',
-            url: 'https://h6fqs3qigl.execute-api.us-east-2.amazonaws.com/quizz/manchetes?categorias='+categories,
+            url: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/manchetes?categorias='+categories,
             headers: {
                 "Content-type": "application/json"
             }
@@ -67,7 +67,7 @@ export default function Quizz() {
         const schoolingUser = localStorage.getItem('schoolingUser')
 
         await axios.post(
-            'https://h6fqs3qigl.execute-api.us-east-2.amazonaws.com/quizz/perfil',
+            'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/perfil',
             {
                 "idade": age,
                 "grauEscolaridade": schoolingUser,
