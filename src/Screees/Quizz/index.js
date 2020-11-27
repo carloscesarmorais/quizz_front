@@ -28,6 +28,8 @@ export default function Quizz() {
     }
 
 
+
+
     useEffect(() => {
         if (!localStorage.getItem('schoolingUser')) {
             window.location.pathname = '/home'
@@ -48,7 +50,7 @@ export default function Quizz() {
 
         axios.request({
             method: 'GET',
-            url: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/manchetes?categorias='+categories,
+            url: 'http://127.0.0.1:8080/quizz/manchetes?categorias='+categories,
             headers: {
                 "Content-type": "application/json"
             }
@@ -61,13 +63,15 @@ export default function Quizz() {
             })
     }
 
+
+
     const savePerfil = async () => {
         const age = parseInt(localStorage.getItem('ageUser'))
         const sourceUser = localStorage.getItem('sourceUser').split(',')
         const schoolingUser = localStorage.getItem('schoolingUser')
 
         await axios.post(
-            'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/perfil',
+            'localhost:8080/quizz/perfil',
             {
                 "idade": age,
                 "grauEscolaridade": schoolingUser,
@@ -95,9 +99,13 @@ export default function Quizz() {
 
     const changeText = (i) => {
         const atualText = document.getElementById('titulo-' + i).textContent
+        const noticia = "Resposta " + document.getElementById('noticia-' + i).textContent.replace("N","n")
 
-        const changeText = atualText.replace("____", manchetes[i].manchete[0].tipoNoticia)
+        const changeText = atualText.replace("____","<b>"  + manchetes[i].manchete[0].tipoNoticia + "</b>")
+
         document.getElementById('titulo-' + i).innerHTML = changeText
+        document.getElementById('noticia-' + i).innerHTML = noticia
+
     }
 
     //Adiciona no array acertos e desacertos e estilos
@@ -109,7 +117,7 @@ export default function Quizz() {
             changeText(i)
 
             const card = document.getElementById('card-' + i)
-            card.setAttribute("style", "border: 3px solid green; font-family: Lucida Console, Courier, monospace;");
+            card.setAttribute("style", "border: 3px solid green; font-family: Lucida Console, Courier, monospace; font-size '150%';");
             card.style.borderRadius = "3px"
 
             const btns = document.getElementById("btns-" + i)
@@ -184,35 +192,43 @@ export default function Quizz() {
                     indicators={false}
                 >
                     {manchetes.map((manchete, i) => {
-                        const {titulo, id} = manchete.manchete[0]
+                        const {resumo, titulo, id} = manchete.manchete[0]
 
                         return (
                             <Carousel.Item className={'card-' + i} id={'card-' + i} key={id}>
-                                <Card style={{width: '24rem'}}>
+                                <Card style={{width: '80vmin', height:'auto'}}>
                                     <Card.Body style={{
                                         backgroundColor: 'rgba(255,156,0,0.07)'
                                     }}>
 
-                                        <Card.Title style={{
+                                        <Card.Title id={'noticia-' + i}style={{
                                             textAlign: 'center',
                                             fontFamily: 'Open Sans',
-                                            fontSize: 30,
-                                            fontWeight: 'bold'
+                                            fontSize: '6vmin',
+                                            fontWeight: 'bold',
+                                            color:  '#05b7ff',
+                                            marginBottom: 20
                                         }}>
                                             Notícia {i + 1}
                                         </Card.Title>
 
-                                        <Card.Text
-                                            id={'titulo-' + i}
-                                            style={{
-                                                fontFamily: 'Arial',
-                                                fontSize: 20,
-                                                padding: 10,
-                                                textAlign: 'justify',
-                                                borderLeft: '1px solid cornflowerblue'
-                                            }}>
-                                            {titulo.replace("####", "____")}
+
+                                        <Card.Subtitle id={'titulo-' + i}  style={{
+                                            fontSize: '5vmin',
+                                            textAlign: 'left',
+                                            fontFamily: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+                                            marginBottom: 10
+                                        }}>
+                                                {titulo.replace("####", "____")}
+                                        </Card.Subtitle>
+
+                                        <Card.Text id={'resumo-' + i}  style={{
+                                            fontSize: '3vmin',
+                                            textAlign: 'justify',
+                                            fontFamily: '"Lucida Sans Unicode", "Lucida Grande", sans-serif'}}>
+                                            {resumo}
                                         </Card.Text>
+
                                         <div id={"btns-" + i}
                                              style={{display: 'flex', justifyContent: 'space-between'}}>
                                             <Button

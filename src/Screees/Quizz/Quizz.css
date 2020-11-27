@@ -2,10 +2,12 @@
 
 
 .wrong {
-    background-color: cornflowerblue;
+    background-color:#05b7ff;
     border: 2px solid red;
 }
 
 .correct {
     border: 2px solid green;
 }
+
+
