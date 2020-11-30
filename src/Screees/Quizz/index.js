@@ -40,7 +40,7 @@ export default function Quizz() {
 
         axios.request({
             method: 'GET',
-            url: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/manchetes'+categories,
+            url: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/manchetes?categorias='+categories,
             headers: {
                 "Content-type": "application/json"
             }
