@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const getManchetes = axios.create({
-    baseURL: 'localhost:8080/quizz/manchetes',
+    baseURL: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/manchetes',
 })
 
 const savePerfil = axios.create({
-    baseURL: 'localhost:8080/quizz/perfil'
+    baseURL: 'https://59mj4amdhi.execute-api.us-east-1.amazonaws.com/quizz/perfil'
 })
 
 export default { getManchetes, savePerfil };
