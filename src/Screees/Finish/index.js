@@ -4,7 +4,7 @@ export default function Finish() {
 	return (
 
 		<div >
-			<h1 className="col-auto" style={{backgroundColor: 'cornflowerblue', marginTop:40, padding:60, textAlign:'center', fontFamily:'Trebuchet MS'}}>Obrigado por nos ajudar com a pesquisa! 💻 </h1>
+			<h3 className="col-auto" style={{backgroundColor: 'cornflowerblue', marginTop:40, padding:30, textAlign:'center', fontFamily:'Trebuchet MS'}}>Obrigado por nos ajudar com a pesquisa! 💻 </h3>
 
 			<div className="row-cols-md-4">
 

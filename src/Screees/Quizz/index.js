@@ -8,27 +8,11 @@ export default function Quizz() {
     const [acertos, setAcertos] = useState([])
     const [tituloErro] = useState([])
     const [linkErro] = useState([])
+    const [tituloAcerto] = useState([])
+    const [linkAcerto] = useState([])
     const [erros, setErros] = useState([])
     const [show, setShow] = useState(false)
     const [showError, setShowError] = useState(false)
-
-    const imprimirLinksErros = () => {
-        let rows = []
-        for (let i = 0; linkErro.length; i++) {
-            rows.push(<li><a href={linkErro[i]}>tituloErro[i]</a></li>)
-        }
-        return (
-            <div>
-                <h1>Notícias:</h1>
-                <ul>
-                    {rows}
-                </ul>
-            </div>
-        )
-    }
-
-
-
 
     useEffect(() => {
         if (!localStorage.getItem('schoolingUser')) {
@@ -37,6 +21,12 @@ export default function Quizz() {
 
         getManchetes()
     }, [])
+
+    const handleRefazer = () => {
+        setShow(false)
+        localStorage.clear();
+        window.location.pathname = '/'
+    }
 
     const handleClose = () => {
         setShow(false)
@@ -71,7 +61,7 @@ export default function Quizz() {
         const schoolingUser = localStorage.getItem('schoolingUser')
 
         await axios.post(
-            'localhost:8080/quizz/perfil',
+            'localhost:8080/quizz/salvar/perfil',
             {
                 "idade": age,
                 "grauEscolaridade": schoolingUser,
@@ -126,6 +116,9 @@ export default function Quizz() {
             const btn = document.getElementById("continue-btn-" + i)
             btn.setAttribute("style", "display: block");
 
+            tituloAcerto.push((manchetes[i].manchete[0].titulo).replace("####", manchetes[i].manchete[0].tipoNoticia))
+            linkAcerto.push((manchetes[i].manchete[0].urlManchete))
+
             setAcertos(acertosContabilizados)
         } else {
             const errosContabilizados = erros
@@ -160,7 +153,7 @@ export default function Quizz() {
             const cardActice = document.getElementsByClassName('card-' + indexAdd)
             cardActice[0].classList.add('active')
         } else {
-            savePerfil()
+           savePerfil()
         }
     }
 
@@ -279,8 +272,20 @@ export default function Quizz() {
                 <Modal.Body>
                     <h4>Voce acertou {acertos.length} de 10 questões</h4>
 
-                    <h6>Caso queira conferir as notícias que você errou, estão logo abaixo: </h6>
+                    <h6>Caso queira conferir as notícias, estão logo abaixo: </h6>
 
+                    <h4 style={{color:'green'}}> <b>  As que você acertou:</b></h4>
+                    <ul>
+                        {linkAcerto.map((value, index) => {
+                            return <li style={{
+                                fontSize: 12,
+                                padding: 4,
+                                textAlign: 'justify',
+                            }}><a href={value}>{tituloAcerto[index]}</a></li>;
+                        })}
+                    </ul>
+
+                    <h4 style={{color:'red'}}> <b>  As que você errou:</b></h4>
                     <ul>
                         {linkErro.map((value, index) => {
                             return <li style={{
@@ -293,6 +298,9 @@ export default function Quizz() {
 
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="warning" onClick={() => handleRefazer()}>
+                        Refazer
+                    </Button>
                     <Button variant="primary" onClick={() => handleClose()}>
                         Concluir
                     </Button>
