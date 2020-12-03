@@ -108,7 +108,7 @@ export default function Home() {
                         FATO OU FAKE
                     </h1>
                     <h6>
-                        Seja bem vindo e muito obrigado por nós ajudar! Este é um estudo para um trabalho de conclusão
+                        Seja bem vindo e muito obrigado por nos ajudar! Este é um estudo para um trabalho de conclusão
                         de curso, <br></br>
                         onde, o objetivo é identificar o quão cada indivíduo consegue supor o que é um fato ou
                         fake. <br></br><br></br>
